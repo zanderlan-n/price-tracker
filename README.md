@@ -1,6 +1,6 @@
-# MarketWatch Frontend
+# Price Tracker
 
-MarketWatch is a web application that helps users track and compare product prices across different supermarkets. The frontend is built with **Next.js**, **React**, **MapBox**, and **Apollo Client**.
+Price Tracker is a web application that helps users track and compare product prices across different supermarkets. The frontend is built with **Next.js**, **React**, **TailwindCSS**, and **ShadCN/UI**.
 
 ## Features
 
@@ -24,8 +24,8 @@ MarketWatch is a web application that helps users track and compare product pric
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/marketwatch-frontend.git
-   cd marketwatch-frontend
+   git clone https://github.com/zanderlan-n/price-tracker
+   cd price-tracker
    ```
 2. Install dependencies
    ```
