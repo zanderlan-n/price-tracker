@@ -10,27 +10,27 @@ import {
   TableRow,
 } from './table';
 import { Pagination } from './pagination';
+import { DEFAULT_PAGE_SIZE } from '@/lib/constants';
 
-export interface TableItem {
-  id: string | number;
-  value: React.ReactNode[];
-}
+export type TableItem = {
+  id: number;
+};
 
-interface Props {
+interface Props<TData extends TableItem> {
   headers: string[];
-  data: TableItem[];
+  data: TData[];
   filters: string;
   currentPage: number;
-  totalPages: number;
+  totalCount: number;
 }
 
-const ServerTable = ({
+const ServerTable = <TData extends TableItem>({
   headers,
   data,
   filters = '',
   currentPage = 1,
-  totalPages,
-}: Props) => {
+  totalCount,
+}: Props<TData>) => {
   return (
     <>
       <Suspense key={filters + currentPage} fallback={<Progress />}>
@@ -50,7 +50,7 @@ const ServerTable = ({
               {!!data.length &&
                 data.map((item, trIndex) => (
                   <TableRow key={`${item.id}-${trIndex}`}>
-                    {item.value.map((value, tdIndex) => (
+                    {Object.values(item).map((value, tdIndex) => (
                       <TableCell
                         key={`${item.id}-${tdIndex}`}
                         className="font-sm md:font-md"
@@ -72,7 +72,7 @@ const ServerTable = ({
           </Table>
         </div>
       </Suspense>
-      <Pagination totalPages={totalPages} />
+      <Pagination totalPages={Math.ceil(totalCount / DEFAULT_PAGE_SIZE)} />
     </>
   );
 };
